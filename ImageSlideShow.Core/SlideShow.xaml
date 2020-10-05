@@ -1,0 +1,412 @@
+﻿<UserControl x:Class="ImageSlideShow.Core.SlideShow"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+              xmlns:AnimationEffect="clr-namespace:ImageSlideShow.Core.EffectsManage.TransitionPresenter"
+             xmlns:Models="clr-namespace:ImageSlideShow.Core.EffectsManage.TransitionPresenter.Models"
+             xmlns:CuxContainer="clr-namespace:ImageSlideShow.Core"
+              >
+    <UserControl.Resources>
+        <DataTemplate DataType="{x:Type Models:Picture}">
+            <Grid Background="Transparent">
+                <CuxContainer:CuxImage/>
+            </Grid>
+        </DataTemplate>
+        <DataTemplate DataType="{x:Type Models:Control}">
+            <Grid Background="Transparent">
+                <ContentPresenter Content="{Binding Source}"/>
+            </Grid>
+        </DataTemplate>
+
+        <!--Base-->
+        <AnimationEffect:Transition x:Key="Base"/>
+        <!--Fade-->
+        <AnimationEffect:FadeTransition Duration="0:0:1.5" x:Key="Fade"/>
+        <!--Fade Wipe 2-->
+        <AnimationEffect:StoryboardTransition x:Key="FadeWipe2">
+            <AnimationEffect:StoryboardTransition.NewContentStoryboard>
+                <Storyboard>
+                    <DoubleAnimation Storyboard.TargetProperty="Opacity" From="0" To="1" Duration="0:0:1.5"/>
+                </Storyboard>
+            </AnimationEffect:StoryboardTransition.NewContentStoryboard>
+        </AnimationEffect:StoryboardTransition>
+        <!--Melt-->
+        <AnimationEffect:StoryboardTransition x:Key="Melt">
+            <AnimationEffect:StoryboardTransition.NewContentStyle>
+                <Style TargetType="ContentPresenter">
+                    <Setter Property="OpacityMask">
+                        <Setter.Value>
+                            <LinearGradientBrush EndPoint="1,0">
+                                <GradientStop Offset="0"/>
+                                <GradientStop Offset="0.1"/>
+                                <GradientStop Offset="0.2"/>
+                                <GradientStop Offset="0.3"/>
+                                <GradientStop Offset="0.4"/>
+                                <GradientStop Offset="0.5"/>
+                                <GradientStop Offset="0.6"/>
+                                <GradientStop Offset="0.7"/>
+                                <GradientStop Offset="0.8"/>
+                                <GradientStop Offset="0.9"/>
+                                <GradientStop Offset="1"/>
+                            </LinearGradientBrush>
+                        </Setter.Value>
+                    </Setter>
+                </Style>
+            </AnimationEffect:StoryboardTransition.NewContentStyle>
+            <AnimationEffect:StoryboardTransition.NewContentStoryboard>
+                <Storyboard>
+                    <ColorAnimation Storyboard.TargetProperty="OpacityMask.GradientStops[0].Color" To="White" Duration="0:0:0.6" BeginTime="0:0:0.42"/>
+                    <ColorAnimation Storyboard.TargetProperty="OpacityMask.GradientStops[1].Color" To="White" Duration="0:0:0.9" BeginTime="0:0:0.6"/>
+                    <ColorAnimation Storyboard.TargetProperty="OpacityMask.GradientStops[2].Color" To="White" Duration="0:0:1.5" BeginTime="0:0:0.093"/>
+                    <ColorAnimation Storyboard.TargetProperty="OpacityMask.GradientStops[3].Color" To="White" Duration="0:0:0.9" BeginTime="0:0:0.06"/>
+                    <ColorAnimation Storyboard.TargetProperty="OpacityMask.GradientStops[4].Color" To="White" Duration="0:0:1.35" BeginTime="0:0:0.9"/>
+                    <ColorAnimation Storyboard.TargetProperty="OpacityMask.GradientStops[5].Color" To="White" Duration="0:0:0.75" BeginTime="0:0:0.36"/>
+                    <ColorAnimation Storyboard.TargetProperty="OpacityMask.GradientStops[6].Color" To="White" Duration="0:0:0.9" BeginTime="0:0:0.57"/>
+                    <ColorAnimation Storyboard.TargetProperty="OpacityMask.GradientStops[7].Color" To="White" Duration="0:0:1.2" BeginTime="0:0:0"/>
+                    <ColorAnimation Storyboard.TargetProperty="OpacityMask.GradientStops[8].Color" To="White" Duration="0:0:0.39" BeginTime="0:0:0.243"/>
+                    <ColorAnimation Storyboard.TargetProperty="OpacityMask.GradientStops[9].Color" To="White" Duration="0:0:1.02" BeginTime="0:0:0.993"/>
+                    <ColorAnimation Storyboard.TargetProperty="OpacityMask.GradientStops[10].Color" To="White" Duration="0:0:1.26" BeginTime="0:0:.0363"/>
+                </Storyboard>
+            </AnimationEffect:StoryboardTransition.NewContentStoryboard>
+        </AnimationEffect:StoryboardTransition>
+        <!--Horizontal Wipe-->
+        <AnimationEffect:StoryboardTransition x:Key="HorizontalWipe">
+            <AnimationEffect:StoryboardTransition.NewContentStyle>
+                <Style TargetType="ContentPresenter">
+                    <Setter Property="OpacityMask">
+                        <Setter.Value>
+                            <LinearGradientBrush StartPoint="0,0" EndPoint="1,0">
+                                <GradientStop Color="#FF000000" Offset="0"/>
+                                <GradientStop Color="#00000000" Offset="0"/>
+                            </LinearGradientBrush>
+                        </Setter.Value>
+                    </Setter>
+                </Style>
+            </AnimationEffect:StoryboardTransition.NewContentStyle>
+            <AnimationEffect:StoryboardTransition.NewContentStoryboard>
+                <Storyboard>
+                    <DoubleAnimation Storyboard.TargetProperty="OpacityMask.GradientStops[1].Offset" From="0" To="1" Duration="0:0:1.5"/>
+                    <DoubleAnimation Storyboard.TargetProperty="OpacityMask.GradientStops[0].Offset" From="0" To="1" Duration="0:0:1.5" BeginTime="0:0:0.15"/>
+                </Storyboard>
+            </AnimationEffect:StoryboardTransition.NewContentStoryboard>
+        </AnimationEffect:StoryboardTransition>
+        <!--Vertical Wipe-->
+        <AnimationEffect:StoryboardTransition x:Key="VerticalWipe">
+            <AnimationEffect:StoryboardTransition.NewContentStyle>
+                <Style TargetType="ContentPresenter">
+                    <Setter Property="OpacityMask">
+                        <Setter.Value>
+                            <LinearGradientBrush StartPoint="0,0" EndPoint="0,1">
+                                <GradientStop Color="#FF000000" Offset="0"/>
+                                <GradientStop Color="#00000000" Offset="0"/>
+                            </LinearGradientBrush>
+                        </Setter.Value>
+                    </Setter>
+                </Style>
+            </AnimationEffect:StoryboardTransition.NewContentStyle>
+            <AnimationEffect:StoryboardTransition.NewContentStoryboard>
+                <Storyboard>
+                    <DoubleAnimation Storyboard.TargetProperty="OpacityMask.GradientStops[1].Offset" From="0" To="1" Duration="0:0:1.5"/>
+                    <DoubleAnimation Storyboard.TargetProperty="OpacityMask.GradientStops[0].Offset" From="0" To="1" Duration="0:0:1.5" BeginTime="0:0:0.15"/>
+                </Storyboard>
+            </AnimationEffect:StoryboardTransition.NewContentStoryboard>
+
+        </AnimationEffect:StoryboardTransition>
+        <!--Diagonal Wipe-->
+        <AnimationEffect:StoryboardTransition x:Key="DiagonalWipe">
+            <AnimationEffect:StoryboardTransition.NewContentStyle>
+                <Style TargetType="ContentPresenter">
+                    <Setter Property="OpacityMask">
+                        <Setter.Value>
+                            <LinearGradientBrush StartPoint="0,0" EndPoint="1,1">
+                                <GradientStop Color="#FF000000" Offset="0"/>
+                                <GradientStop Color="#00000000" Offset="0"/>
+                            </LinearGradientBrush>
+                        </Setter.Value>
+                    </Setter>
+                </Style>
+            </AnimationEffect:StoryboardTransition.NewContentStyle>
+            <AnimationEffect:StoryboardTransition.NewContentStoryboard>
+                <Storyboard>
+                    <DoubleAnimation Storyboard.TargetProperty="OpacityMask.GradientStops[1].Offset" From="0" To="1" Duration="0:0:1.5"/>
+                    <DoubleAnimation Storyboard.TargetProperty="OpacityMask.GradientStops[0].Offset" From="0" To="1" Duration="0:0:1.5" BeginTime="0:0:0.15"/>
+                </Storyboard>
+            </AnimationEffect:StoryboardTransition.NewContentStoryboard>
+        </AnimationEffect:StoryboardTransition>
+        <!--Rotate Wipe-->
+        <AnimationEffect:StoryboardTransition x:Key="RotateWipe">
+            <AnimationEffect:StoryboardTransition.NewContentStyle>
+                <Style TargetType="ContentPresenter">
+                    <Setter Property="OpacityMask">
+                        <Setter.Value>
+                            <LinearGradientBrush EndPoint="1,0">
+                                <LinearGradientBrush.Transform>
+                                    <RotateTransform Angle="10"/>
+                                </LinearGradientBrush.Transform>
+                                <GradientStop Offset="0" Color="White"/>
+                                <GradientStop Offset="0.1" />
+                            </LinearGradientBrush>
+                        </Setter.Value>
+                    </Setter>
+                </Style>
+            </AnimationEffect:StoryboardTransition.NewContentStyle>
+            <AnimationEffect:StoryboardTransition.NewContentStoryboard>
+                <Storyboard>
+                    <DoubleAnimation Storyboard.TargetProperty="OpacityMask.Transform.Angle" To="-90" Duration="0:0:1.5"/>
+                </Storyboard>
+            </AnimationEffect:StoryboardTransition.NewContentStoryboard>
+        </AnimationEffect:StoryboardTransition>
+        <!--Double Rotate Wipe-->
+        <AnimationEffect:StoryboardTransition x:Key="DoubleRotateWipe">
+            <AnimationEffect:StoryboardTransition.NewContentStyle>
+                <Style TargetType="ContentPresenter">
+                    <Setter Property="OpacityMask">
+                        <Setter.Value>
+                            <DrawingBrush>
+                                <DrawingBrush.Drawing>
+                                    <DrawingGroup>
+                                        <GeometryDrawing Geometry="M0,0 L1,0 L1,1 L0,1 z">
+                                            <GeometryDrawing.Brush>
+                                                <LinearGradientBrush EndPoint="1,0">
+                                                    <LinearGradientBrush.Transform>
+                                                        <RotateTransform Angle="5"/>
+                                                    </LinearGradientBrush.Transform>
+                                                    <GradientStop Offset="0"   Color="White"/>
+                                                    <GradientStop Offset="0.1" />
+                                                </LinearGradientBrush>
+                                            </GeometryDrawing.Brush>
+                                        </GeometryDrawing>
+
+                                        <GeometryDrawing Geometry="M0,0 L1,0 L1,1 L0,1 z">
+                                            <GeometryDrawing.Brush>
+                                                <LinearGradientBrush StartPoint="1,1" EndPoint="0,1">
+                                                    <LinearGradientBrush.Transform>
+                                                        <RotateTransform Angle="5" CenterX="1" CenterY="1"/>
+                                                    </LinearGradientBrush.Transform>
+                                                    <GradientStop Offset="0"  Color="White" />
+                                                    <GradientStop Offset="0.1" />
+                                                </LinearGradientBrush>
+                                            </GeometryDrawing.Brush>
+                                        </GeometryDrawing>
+                                    </DrawingGroup>
+                                </DrawingBrush.Drawing>
+                            </DrawingBrush>
+                        </Setter.Value>
+                    </Setter>
+                </Style>
+            </AnimationEffect:StoryboardTransition.NewContentStyle>
+            <AnimationEffect:StoryboardTransition.NewContentStoryboard>
+                <Storyboard>
+                    <DoubleAnimation Storyboard.TargetProperty="OpacityMask.Drawing.Children[0].Brush.Transform.Angle" To="-45" Duration="0:0:1.5"/>
+                    <DoubleAnimation Storyboard.TargetProperty="OpacityMask.Drawing.Children[1].Brush.Transform.Angle" To="-45" Duration="0:0:1.5"/>
+                </Storyboard>
+            </AnimationEffect:StoryboardTransition.NewContentStoryboard>
+        </AnimationEffect:StoryboardTransition>
+        <!--Vertical Blinds-->
+        <AnimationEffect:StoryboardTransition x:Key="VerticalBlinds">
+            <AnimationEffect:StoryboardTransition.NewContentStyle>
+                <Style TargetType="ContentPresenter">
+                    <Setter Property="OpacityMask">
+                        <Setter.Value>
+                            <LinearGradientBrush MappingMode="Absolute" SpreadMethod="Repeat" StartPoint="0,0" EndPoint="60,0">
+                                <GradientStop Color="White"/>
+                                <GradientStop/>
+                            </LinearGradientBrush>
+                        </Setter.Value>
+                    </Setter>
+                </Style>
+            </AnimationEffect:StoryboardTransition.NewContentStyle>
+            <AnimationEffect:StoryboardTransition.NewContentStoryboard>
+                <Storyboard>
+                    <DoubleAnimation Storyboard.TargetProperty="OpacityMask.GradientStops[0].Offset" To="1" Duration="0:0:1.5" BeginTime="0:0:0.6"/>
+                    <DoubleAnimation Storyboard.TargetProperty="OpacityMask.GradientStops[1].Offset" To="1" Duration="0:0:1.5"/>
+                </Storyboard>
+            </AnimationEffect:StoryboardTransition.NewContentStoryboard>
+        </AnimationEffect:StoryboardTransition>
+        <!--Horizontal Blinds-->
+        <AnimationEffect:StoryboardTransition x:Key="HorizontalBlinds">
+            <AnimationEffect:StoryboardTransition.NewContentStyle>
+                <Style TargetType="ContentPresenter">
+                    <Setter Property="OpacityMask">
+                        <Setter.Value>
+                            <LinearGradientBrush MappingMode="Absolute" SpreadMethod="Repeat" StartPoint="0,0" EndPoint="0,60">
+                                <GradientStop Color="White"/>
+                                <GradientStop/>
+                            </LinearGradientBrush>
+                        </Setter.Value>
+                    </Setter>
+                </Style>
+            </AnimationEffect:StoryboardTransition.NewContentStyle>
+            <AnimationEffect:StoryboardTransition.NewContentStoryboard>
+                <Storyboard>
+                    <DoubleAnimation Storyboard.TargetProperty="OpacityMask.GradientStops[0].Offset" To="1" Duration="0:0:1.5" BeginTime="0:0:0.6"/>
+                    <DoubleAnimation Storyboard.TargetProperty="OpacityMask.GradientStops[1].Offset" To="1" Duration="0:0:1.5"/>
+                </Storyboard>
+            </AnimationEffect:StoryboardTransition.NewContentStoryboard>
+        </AnimationEffect:StoryboardTransition>
+        <!--Diamonds-->
+        <AnimationEffect:StoryboardTransition x:Key="Diamonds">
+            <AnimationEffect:StoryboardTransition.NewContentStyle>
+                <Style TargetType="ContentPresenter">
+                    <Setter Property="OpacityMask">
+                        <Setter.Value>
+                            <DrawingBrush TileMode="FlipXY" ViewboxUnits="Absolute" Viewport="0,0,30,30" ViewportUnits="Absolute">
+                                <DrawingBrush.Drawing>
+                                    <GeometryDrawing Brush="White">
+                                        <GeometryDrawing.Geometry>
+                                            <RectangleGeometry Rect="-1,-1,2,2">
+                                                <RectangleGeometry.Transform>
+                                                    <RotateTransform Angle="90" CenterX="1" CenterY="1"/>
+                                                </RectangleGeometry.Transform>
+                                            </RectangleGeometry>
+                                        </GeometryDrawing.Geometry>
+                                    </GeometryDrawing>
+                                </DrawingBrush.Drawing>
+                            </DrawingBrush>
+                        </Setter.Value>
+                    </Setter>
+                </Style>
+            </AnimationEffect:StoryboardTransition.NewContentStyle>
+            <AnimationEffect:StoryboardTransition.NewContentStoryboard>
+                <Storyboard>
+                    <DoubleAnimation Storyboard.TargetProperty="OpacityMask.Drawing.Geometry.Transform.Angle" To="0" Duration="0:0:1.5"/>
+                </Storyboard>
+            </AnimationEffect:StoryboardTransition.NewContentStoryboard>
+        </AnimationEffect:StoryboardTransition>
+        <!--Checkerboard-->
+        <AnimationEffect:StoryboardTransition x:Key="Checkerboard">
+            <AnimationEffect:StoryboardTransition.NewContentStyle>
+                <Style TargetType="ContentPresenter">
+                    <Setter Property="OpacityMask">
+                        <Setter.Value>
+                            <DrawingBrush TileMode="Tile" ViewboxUnits="Absolute" Viewbox="0,0,2,2" Viewport="0,0,60,60" ViewportUnits="Absolute">
+                                <DrawingBrush.Drawing>
+                                    <GeometryDrawing Brush="White">
+                                        <GeometryDrawing.Geometry>
+                                            <GeometryGroup>
+                                                <RectangleGeometry Rect="0,0,0,1" />
+                                                <RectangleGeometry Rect="0,1,0,1"/>
+                                                <RectangleGeometry Rect="1,1,0,1"/>
+                                            </GeometryGroup>
+                                        </GeometryDrawing.Geometry>
+                                    </GeometryDrawing>
+                                </DrawingBrush.Drawing>
+                            </DrawingBrush>
+                        </Setter.Value>
+                    </Setter>
+                </Style>
+            </AnimationEffect:StoryboardTransition.NewContentStyle>
+            <AnimationEffect:StoryboardTransition.NewContentStoryboard>
+                <Storyboard>
+                    <RectAnimation Storyboard.TargetProperty="OpacityMask.Drawing.Geometry.Children[0].Rect" To="0,0,2,1" Duration="0:0:1.5" BeginTime="0:0:0"/>
+                    <RectAnimation Storyboard.TargetProperty="OpacityMask.Drawing.Geometry.Children[1].Rect" To="0,1,1,1" Duration="0:0:0.75" BeginTime="0:0:0.75"/>
+                    <RectAnimation Storyboard.TargetProperty="OpacityMask.Drawing.Geometry.Children[2].Rect" To="1,1,1,1" Duration="0:0:0.75" BeginTime="0:0:0"/>
+                </Storyboard>
+            </AnimationEffect:StoryboardTransition.NewContentStoryboard>
+        </AnimationEffect:StoryboardTransition>
+        <!--Roll-->
+        <AnimationEffect:StoryboardTransition x:Key="Roll" IsNewContentTopmost="false" ClipToBounds="true">
+            <AnimationEffect:StoryboardTransition.OldContentStyle>
+                <Style TargetType="ContentPresenter">
+                    <Setter Property="RenderTransformOrigin" Value="0,1"/>
+                    <Setter Property="RenderTransform">
+                        <Setter.Value>
+                            <RotateTransform/>
+                        </Setter.Value>
+                    </Setter>
+                </Style>
+            </AnimationEffect:StoryboardTransition.OldContentStyle>
+            <AnimationEffect:StoryboardTransition.OldContentStoryboard>
+                <Storyboard>
+                    <DoubleAnimation Storyboard.TargetProperty="RenderTransform.Angle" From="0" To="-90" Duration="0:0:1.5"/>
+                </Storyboard>
+            </AnimationEffect:StoryboardTransition.OldContentStoryboard>
+        </AnimationEffect:StoryboardTransition>
+        <!--Dots-->
+        <AnimationEffect:StoryboardTransition x:Key="Dots">
+            <AnimationEffect:StoryboardTransition.NewContentStyle>
+                <Style TargetType="ContentPresenter">
+                    <Setter Property="OpacityMask">
+                        <Setter.Value>
+                            <DrawingBrush ViewportUnits="Absolute" Viewport="0,0,30,30" ViewboxUnits="Absolute" Viewbox="-1,-1,2,2" TileMode="Tile">
+                                <DrawingBrush.Drawing>
+                                    <GeometryDrawing Geometry="M0,0 L1,0 L1,1 L0,1 z">
+                                        <GeometryDrawing.Brush>
+                                            <RadialGradientBrush>
+                                                <GradientStop Color="White" Offset="0.5"/>
+                                                <GradientStop Color="Transparent" Offset="1"/>
+                                            </RadialGradientBrush>
+                                        </GeometryDrawing.Brush>
+                                    </GeometryDrawing>
+                                </DrawingBrush.Drawing>
+                            </DrawingBrush>
+                        </Setter.Value>
+                    </Setter>
+                </Style>
+            </AnimationEffect:StoryboardTransition.NewContentStyle>
+            <AnimationEffect:StoryboardTransition.NewContentStoryboard>
+                <Storyboard>
+                    <RectAnimation Storyboard.TargetProperty="OpacityMask.Viewbox" From="-1,-1,3,3" To="0.49,0.49,0.02,0.02" Duration="0:0:1.5"/>
+                </Storyboard>
+            </AnimationEffect:StoryboardTransition.NewContentStoryboard>
+        </AnimationEffect:StoryboardTransition>
+        <!--Fade And Grow-->
+        <AnimationEffect:StoryboardTransition x:Key="FadeAndGrow" IsNewContentTopmost="False">
+            <AnimationEffect:StoryboardTransition.OldContentStyle>
+                <Style TargetType="ContentPresenter">
+                    <Setter Property="RenderTransformOrigin" Value="0.5, 0.5"/>
+                    <Setter Property="RenderTransform">
+                        <Setter.Value>
+                            <ScaleTransform ScaleX="1" ScaleY="1"/>
+                        </Setter.Value>
+                    </Setter>
+                </Style>
+            </AnimationEffect:StoryboardTransition.OldContentStyle>
+            <AnimationEffect:StoryboardTransition.OldContentStoryboard>
+                <Storyboard>
+                    <DoubleAnimation Storyboard.TargetProperty="Opacity" From="1" To="0" Duration="0:0:1.5"/>
+                    <DoubleAnimation Storyboard.TargetProperty="RenderTransform.ScaleX" From="1" To="1.2" Duration="0:0:1.5"/>
+                    <DoubleAnimation Storyboard.TargetProperty="RenderTransform.ScaleY" From="1" To="1.2" Duration="0:0:1.5"/>
+                </Storyboard>
+            </AnimationEffect:StoryboardTransition.OldContentStoryboard>
+
+            <AnimationEffect:StoryboardTransition.NewContentStyle>
+                <Style TargetType="ContentPresenter">
+                    <Setter Property="RenderTransformOrigin" Value="0.5, 0.5"/>
+                    <Setter Property="RenderTransform">
+                        <Setter.Value>
+                            <ScaleTransform ScaleX="1" ScaleY="1"/>
+                        </Setter.Value>
+                    </Setter>
+                </Style>
+            </AnimationEffect:StoryboardTransition.NewContentStyle>
+            <AnimationEffect:StoryboardTransition.NewContentStoryboard>
+                <Storyboard>
+                    <DoubleAnimation Storyboard.TargetProperty="Opacity" From="0" To="1" Duration="0:0:1.5"/>
+                    <DoubleAnimation Storyboard.TargetProperty="RenderTransform.ScaleX" From="0.8" To="1" Duration="0:0:1.5"/>
+                    <DoubleAnimation Storyboard.TargetProperty="RenderTransform.ScaleY" From="0.8" To="1" Duration="0:0:1.5"/>
+                </Storyboard>
+            </AnimationEffect:StoryboardTransition.NewContentStoryboard>
+        </AnimationEffect:StoryboardTransition>
+        <!--2D Translate Transition-->
+        <AnimationEffect:TranslateTransition x:Key="TranslateTransition2D" Duration="0:0:1.5" StartPoint="-1,0"/>
+        <!--3D Flip-->
+        <AnimationEffect:FlipTransition x:Key="Flip3D" Duration="0:0:1.5"/>
+        <!--3D Door-->
+        <AnimationEffect:DoorTransition x:Key="Door3D" Duration="0:0:1.5" FieldOfView="40"/>
+        <!--3D Rotate-->
+        <AnimationEffect:RotateTransition x:Key="Rotate3D" Duration="0:0:1.5" FieldOfView="40" Angle="90"/>
+        <!--3D Spin-->
+        <AnimationEffect:RotateTransition x:Key="Spin3D" Duration="0:0:1.5" FieldOfView="40" Angle="0" Contained="true" Direction="Up"/>
+        <!--3D Explosion-->
+        <AnimationEffect:ExplosionTransition x:Key="Explosion3D" Duration="0:0:1.5"/>
+        <!--Cloth-->
+        <AnimationEffect:ClothTransition x:Key="Cloth"/>
+        <!--Page-->
+        <AnimationEffect:PageTransition x:Key="Page" FieldOfView="10" ClipToBounds="true"/>
+    </UserControl.Resources>
+    <Grid x:Name="BackContainer">
+        <StackPanel x:Name="ItemsContainer"/>
+    </Grid>
+</UserControl>

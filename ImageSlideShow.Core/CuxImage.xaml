@@ -1,0 +1,78 @@
+﻿<UserControl x:Class="ImageSlideShow.Core.CuxImage"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             mc:Ignorable="d" 
+             xmlns:slidShow="clr-namespace:ImageSlideShow.Core"
+             >
+    <UserControl.Resources>
+        <slidShow:ImageConverter x:Key="imageConverter"/>
+    </UserControl.Resources>
+    <Grid x:Name="gridContainer" PreviewTouchUp="gridContainer_TouchUp"  PreviewTouchDown="touchPad_PreviewTouchUp" >
+        <Grid DataContext="{Binding IsZoomMode}"  Width="1" Height="1" DataContextChanged="Grid_DataContextChanged"/>
+        <Grid DataContext="{Binding RotateAngle}" Width="1" Height="1" DataContextChanged="RotateAngle_DataContextChanged" />
+        <Image x:Name="image" Source="{Binding Source,Converter={StaticResource imageConverter}}" Stretch="{Binding ImageStretch}" IsManipulationEnabled="True"
+               ManipulationStarting="Image_ManipulationStarting"   
+               ManipulationDelta="Image_ManipulationDelta"
+               ManipulationCompleted="Image_ManipulationCompleted">
+            <Image.RenderTransform>
+                <MatrixTransform x:Name="matrixX"/>
+            </Image.RenderTransform>
+        </Image>
+        <!--<Grid x:Name="gd" Visibility="Collapsed">
+            <Grid HorizontalAlignment="Left" Height="50" VerticalAlignment="Top" Width="50">
+                <Rectangle Fill="#99000000" Stroke="White" RadiusX="3" RadiusY="3"/>
+                <Path Data="M7.4556189,0.5 L14.500001,11.5 9,11.499866 9,29.499999 6,29.499999 6,11.499791 0.5,11.499657 z" Fill="#FFE2E8ED" Stretch="Fill" Stroke="#FFFBFFFF" UseLayoutRounding="False" Width="15" Height="30" RenderTransformOrigin="0.5,0.5" >
+                    <Path.RenderTransform>
+                        <TransformGroup>
+                            <ScaleTransform/>
+                            <SkewTransform/>
+                            <RotateTransform Angle="-45"/>
+                            <TranslateTransform/>
+                        </TransformGroup>
+                    </Path.RenderTransform>
+                </Path>
+            </Grid>
+            <Grid HorizontalAlignment="Right" Height="50" VerticalAlignment="Top" Width="50">
+                <Rectangle Fill="#99000000" Stroke="White" RadiusX="3" RadiusY="3"/>
+                <Path Data="M7.4556189,0.5 L14.500001,11.5 9,11.499866 9,29.499999 6,29.499999 6,11.499791 0.5,11.499657 z" Fill="#FFE2E8ED" Stretch="Fill" Stroke="#FFFBFFFF" UseLayoutRounding="False" Width="15" Height="30" RenderTransformOrigin="0.5,0.5" >
+                    <Path.RenderTransform>
+                        <TransformGroup>
+                            <ScaleTransform/>
+                            <SkewTransform/>
+                            <RotateTransform Angle="45"/>
+                            <TranslateTransform/>
+                        </TransformGroup>
+                    </Path.RenderTransform>
+                </Path>
+            </Grid>
+            <Grid HorizontalAlignment="Right" Height="50" VerticalAlignment="Bottom" Width="50">
+                <Rectangle Fill="#99000000" Stroke="White" RadiusX="3" RadiusY="3"/>
+                <Path Data="M7.4556189,0.5 L14.500001,11.5 9,11.499866 9,29.499999 6,29.499999 6,11.499791 0.5,11.499657 z" Fill="#FFE2E8ED" Stretch="Fill" Stroke="#FFFBFFFF" UseLayoutRounding="False" Width="15" Height="30" RenderTransformOrigin="0.5,0.5" >
+                    <Path.RenderTransform>
+                        <TransformGroup>
+                            <ScaleTransform/>
+                            <SkewTransform/>
+                            <RotateTransform Angle="135"/>
+                            <TranslateTransform/>
+                        </TransformGroup>
+                    </Path.RenderTransform>
+                </Path>
+            </Grid>
+            <Grid HorizontalAlignment="Left" Height="50" VerticalAlignment="Bottom" Width="50">
+                <Rectangle Fill="#99000000" Stroke="White" RadiusX="3" RadiusY="3"/>
+                <Path Data="M7.4556189,0.5 L14.500001,11.5 9,11.499866 9,29.499999 6,29.499999 6,11.499791 0.5,11.499657 z" Fill="#FFE2E8ED" Stretch="Fill" Stroke="#FFFBFFFF" UseLayoutRounding="False" Width="15" Height="30" RenderTransformOrigin="0.5,0.5" >
+                    <Path.RenderTransform>
+                        <TransformGroup>
+                            <ScaleTransform/>
+                            <SkewTransform/>
+                            <RotateTransform Angle="-135"/>
+                            <TranslateTransform/>
+                        </TransformGroup>
+                    </Path.RenderTransform>
+                </Path>
+            </Grid>
+        </Grid>-->
+    </Grid>
+</UserControl>

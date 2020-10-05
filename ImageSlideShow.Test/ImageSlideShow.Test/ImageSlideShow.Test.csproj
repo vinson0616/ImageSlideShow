@@ -94,5 +94,11 @@
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\ImageSlideShow.Core\ImageSlideShow.Core.csproj">
+      <Project>{fcf3d414-004c-4003-8fc9-9d17f6d55266}</Project>
+      <Name>ImageSlideShow.Core</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

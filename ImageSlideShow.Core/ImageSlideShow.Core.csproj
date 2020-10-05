@@ -31,17 +31,94 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="PresentationCore" />
+    <Reference Include="PresentationFramework" />
     <Reference Include="System" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xaml" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System.Data" />
     <Reference Include="System.Net.Http" />
     <Reference Include="System.Xml" />
+    <Reference Include="WindowsBase" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="CuxImage.xaml.cs">
+      <DependentUpon>CuxImage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="DataConverter.cs" />
+    <Compile Include="EffectsManage\AnimationCustom\CuxAnimation.cs" />
+    <Compile Include="EffectsManage\AnimationCustom\CuxAnimation1.cs" />
+    <Compile Include="EffectsManage\AnimationCustom\CuxAnimationUsingKeyFrames.cs" />
+    <Compile Include="EffectsManage\AnimationCustom\CuxExtentCommon.cs" />
+    <Compile Include="EffectsManage\AnimationCustom\DoubleAnimations\BackDoubleAnimation.cs" />
+    <Compile Include="EffectsManage\AnimationCustom\DoubleAnimations\BounceDoubleAnimation.cs" />
+    <Compile Include="EffectsManage\AnimationCustom\DoubleAnimations\CircleAnimation.cs" />
+    <Compile Include="EffectsManage\AnimationCustom\DoubleAnimations\ElasticDoubleAnimation.cs" />
+    <Compile Include="EffectsManage\AnimationCustom\DoubleAnimations\ExponentialDoubleAnimation.cs" />
+    <Compile Include="EffectsManage\TransitionPresenter\ClothTransition.cs" />
+    <Compile Include="EffectsManage\TransitionPresenter\DoorTransition.cs" />
+    <Compile Include="EffectsManage\TransitionPresenter\ExplosionTransition.cs" />
+    <Compile Include="EffectsManage\TransitionPresenter\FadeTransition.cs" />
+    <Compile Include="EffectsManage\TransitionPresenter\FlipTransition.cs" />
+    <Compile Include="EffectsManage\TransitionPresenter\Models\Control.cs" />
+    <Compile Include="EffectsManage\TransitionPresenter\Models\Picture.cs" />
+    <Compile Include="EffectsManage\TransitionPresenter\PageTransition.cs" />
+    <Compile Include="EffectsManage\TransitionPresenter\Reveal\HorizontalRevealMode.cs" />
+    <Compile Include="EffectsManage\TransitionPresenter\Reveal\Reveal.cs" />
+    <Compile Include="EffectsManage\TransitionPresenter\Reveal\VerticalRevealMode.cs" />
+    <Compile Include="EffectsManage\TransitionPresenter\RotateTransition.cs" />
+    <Compile Include="EffectsManage\TransitionPresenter\StoryboardTransition.cs" />
+    <Compile Include="EffectsManage\TransitionPresenter\Transition.cs" />
+    <Compile Include="EffectsManage\TransitionPresenter\Transition3D.cs" />
+    <Compile Include="EffectsManage\TransitionPresenter\TransitionElement.cs" />
+    <Compile Include="EffectsManage\TransitionPresenter\TransitionSelector.cs" />
+    <Compile Include="EffectsManage\TransitionPresenter\TranslateTransition.cs" />
+    <Compile Include="EffectsManage\TransitionPresenter\TwoWayTransitionSelector.cs" />
+    <Compile Include="ExifLibrary\BinaryMapViewer.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="ExifLibrary\BitConverterEx.cs" />
+    <Compile Include="ExifLibrary\ExifBitConverter.cs" />
+    <Compile Include="ExifLibrary\ExifEnums.cs" />
+    <Compile Include="ExifLibrary\ExifExceptions.cs" />
+    <Compile Include="ExifLibrary\ExifExtendedProperty.cs" />
+    <Compile Include="ExifLibrary\ExifExtensionMethods.cs" />
+    <Compile Include="ExifLibrary\ExifFile.cs" />
+    <Compile Include="ExifLibrary\ExifInterOperability.cs" />
+    <Compile Include="ExifLibrary\ExifProperty.cs" />
+    <Compile Include="ExifLibrary\ExifPropertyFactory.cs" />
+    <Compile Include="ExifLibrary\ExifTag.cs" />
+    <Compile Include="ExifLibrary\ExifTagFactory.cs" />
+    <Compile Include="ExifLibrary\JPEGExceptions.cs" />
+    <Compile Include="ExifLibrary\JPEGFile.cs" />
+    <Compile Include="ExifLibrary\JPEGMarker.cs" />
+    <Compile Include="ExifLibrary\JPEGSection.cs" />
+    <Compile Include="ExifLibrary\MathEx.cs" />
+    <Compile Include="ImgManager.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="SlideShow.xaml.cs">
+      <DependentUpon>SlideShow.xaml</DependentUpon>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="ExifLibrary\BinaryMapViewer.resx">
+      <DependentUpon>BinaryMapViewer.cs</DependentUpon>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <Page Include="CuxImage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="SlideShow.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

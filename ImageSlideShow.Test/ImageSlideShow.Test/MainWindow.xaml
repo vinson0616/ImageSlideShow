@@ -3,10 +3,11 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:controls ="clr-namespace:ImageSlideShow.Core;assembly=ImageSlideShow.Core"
         xmlns:local="clr-namespace:ImageSlideShow.Test"
         mc:Ignorable="d"
         Title="MainWindow" Height="450" Width="800">
     <Grid>
-        
+        <controls:SlideShow  x:Name="imgeslideshow"   Background="Black" />
     </Grid>
 </Window>
