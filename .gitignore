@@ -1,0 +1,9 @@
+﻿################################################################################
+# This .gitignore file was automatically created by Microsoft(R) Visual Studio.
+################################################################################
+
+/ImageSlideShow.Core/bin/Debug
+/ImageSlideShow.Core/obj/Debug
+/ImageSlideShow.Test/ImageSlideShow.Test/bin/Debug
+/ImageSlideShow.Test/ImageSlideShow.Test/obj/Debug
+/ImageSlideShow.Test/.vs/ImageSlideShow.Test/v15
